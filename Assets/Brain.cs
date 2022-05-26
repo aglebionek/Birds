@@ -39,7 +39,7 @@ public class Brain : MonoBehaviour {
         //3 bottom
         //4 force to apply if nothing is in sight
         dna = new DNA(DNALength, 100);
-        this.transform.Translate(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f), 0);
+        this.transform.Translate(0, 0, 0);
         startPosition = this.transform.position;
         rb = this.GetComponent<Rigidbody2D>();
     }

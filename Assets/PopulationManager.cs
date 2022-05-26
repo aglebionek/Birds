@@ -12,8 +12,6 @@ public class PopulationManager : MonoBehaviour {
     public float trialTime = 5;
     int generation = 1;
     public float timeScale = 1;
-    List<double> mostCommonPhenotype = new List<double>();
-
 
     GUIStyle guiStyle = new GUIStyle();
     void OnGUI() {
@@ -34,9 +32,6 @@ public class PopulationManager : MonoBehaviour {
             bot.GetComponent<Brain>().Init();
             population.Add(bot);
         }
-        var most = population.GroupBy(i=>i.GetComponent<Brain>().dna.Phenotype()).OrderByDescending(grp=>grp.Count()).Select(grp=>grp.Key).First();
-        Debug.Log(most);
-        mostCommonPhenotype.Add(most);
         Time.timeScale = timeScale;
     }
 
@@ -54,6 +49,7 @@ public class PopulationManager : MonoBehaviour {
 
     void BreedNewPopulation() {
         List<GameObject> sortedList = population.OrderByDescending(o => o.GetComponent<Brain>().distanceTravelled).ToList();
+        Debug.Log(sortedList[0]);
         double averageTopPhenotype = 0;
         for (int i = 0; i < 10; i++) {
             averageTopPhenotype += sortedList[i].GetComponent<Brain>().dna.Phenotype();
